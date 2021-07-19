@@ -33,6 +33,9 @@ class UserModel extends Model {
   void updateUserId(String _userId) {
     this._userId = _userId;
     notifyListeners();
+    print("\n");
+    print(_userId);
+    print("\n");
   }
 
   void updateEmail(String _email) {

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pet/scoped_model/user_model.dart';
 import 'package:pet/widgets/dog_card_user.dart';
 
 class ShowListPostUser extends StatelessWidget {
@@ -22,7 +23,7 @@ class ShowListPostUser extends StatelessWidget {
         stream: FirebaseFirestore.instance
             .collection('posts')
             // .where('found', isEqualTo: false)
-            .where('owner', isEqualTo: '633eWJc92XZCTLXXRAKa1GhslgG3')
+            .where('owner', isEqualTo: UserModel().userId)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) return Text('Error: ${snapshot.error}');
