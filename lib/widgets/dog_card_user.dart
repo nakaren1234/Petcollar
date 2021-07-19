@@ -82,7 +82,7 @@ class DogCardUser extends StatelessWidget {
                   Text(
                     "Status :",
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: 18.0,
                       fontFamily: 'K2D',
                       fontWeight: FontWeight.bold,
                     ),
