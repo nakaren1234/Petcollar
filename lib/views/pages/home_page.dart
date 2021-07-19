@@ -4,6 +4,7 @@ import 'package:pet/views/pages/profile_page.dart';
 import 'package:pet/widgets/add_list_post.dart';
 import 'package:pet/widgets/add_list_history.dart';
 import 'package:pet/widgets/show_list_post.dart';
+import 'package:pet/widgets/show_list_user_post.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
