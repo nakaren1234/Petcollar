@@ -170,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void alertScaffold(String msg) {
-    scaffoldKey.currentState.showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(msg, style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.red,

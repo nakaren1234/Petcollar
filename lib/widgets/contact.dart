@@ -23,9 +23,7 @@ class _ConTactState extends State<ConTact> {
                 padding: EdgeInsets.all(7.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    // showLogoProfile(),
-                  ],
+                  children: <Widget>[],
                 ),
               ),
               SizedBox(height: 20.0),
@@ -192,30 +190,19 @@ class _ConTactState extends State<ConTact> {
         elevation: 1.0,
         backgroundColor: Colors.yellowAccent[700],
         automaticallyImplyLeading: false,
-        // leading: InkWell(
-        //   onTap: () {
-        //     Navigator.pop(context);
-        //   },
-        //   child: Icon(
-        //     Icons.arrow_back,
-        //     color: Colors.white,
-        //   ),
-        // ),
       ),
       body: Container(
         child: Column(
           children: [
             showContent(),
             SizedBox(height: 10.0),
-            RaisedButton(
+            ElevatedButton(
               child: Text('Home'),
-              onPressed: () {
-                // Navigator.pushNamedAndRemoveUntil(context, 'homestack/home', (Route<dynamic> route) => false);
-                MaterialPageRoute materialPageRoute = MaterialPageRoute(
-                    builder: (BuildContext context) => MyHomePage());
-                Navigator.of(context)
-                    .pushAndRemoveUntil(materialPageRoute, (route) => false);
-              },
+              onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                    builder: (BuildContext context) => MyHomePage()),
+                (route) => false,
+              ),
             ),
           ],
         ),

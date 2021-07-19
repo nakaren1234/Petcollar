@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
-class DogCardUser extends StatelessWidget {
+class DogCard extends StatelessWidget {
   final DocumentSnapshot document;
 
-  const DogCardUser({
+  const DogCard({
     this.document,
   });
 
@@ -63,7 +63,6 @@ class DogCardUser extends StatelessWidget {
                   Flexible(
                     child: Text(
                       "Time: ${DateTime.parse(document['created_at'].toDate().toString())}",
-                      // document['created_at']
                       style: TextStyle(
                         fontSize: 18.0,
                         fontFamily: 'K2D',
@@ -90,16 +89,22 @@ class DogCardUser extends StatelessWidget {
                   Transform.scale(
                     scale: 0.6,
                     child: LiteRollingSwitch(
-                      value: false,
-                      textOn: " พบเจอ  :${document['found']}",
-                      textOff: " สูญหาย ${document['found']}",
-                      colorOn: Colors.lightGreenAccent,
-                      colorOff: Colors.redAccent,
+                      value: document['found'] ?? false,
+                      textOn: "สูญหาย",
+                      textOff: "พบเจอ",
+                      colorOn: Colors.redAccent,
+                      colorOff: Colors.lightGreenAccent,
                       iconOn: Icons.notifications,
                       iconOff: Icons.notifications,
                       textSize: 22.0,
-                      onChanged: (bool position) {
-                        print("The button is $position");
+                      onChanged: (bool position) async {
+                        FirebaseFirestore.instance
+                            .collection('posts')
+                            .doc(document.id)
+                            .update({
+                          "found": !document['found'],
+                          "updated_at": DateTime.now(),
+                        });
                       },
                     ),
                   ),

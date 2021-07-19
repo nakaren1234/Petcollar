@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet/scoped_model/user_model.dart';
-import 'package:pet/widgets/show_list_post_user.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:uuid/uuid.dart';
 import 'package:toast/toast.dart';
@@ -255,18 +254,6 @@ class _AddListPostState extends State<AddListPost> {
     );
   }
 
-  Widget showpostuserButton() {
-    return IconButton(
-      icon: Icon(Icons.person),
-      onPressed: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => ShowListPostUser(),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -281,9 +268,6 @@ class _AddListPostState extends State<AddListPost> {
         centerTitle: true,
         elevation: 1.0,
         backgroundColor: Colors.yellowAccent[700],
-        actions: [
-          showpostuserButton(),
-        ],
       ),
       resizeToAvoidBottomInset: false,
       body: Container(
