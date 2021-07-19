@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pet/scoped_model/user_model.dart';
 import 'package:pet/widgets/dog_card_user.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-class ShowListPost extends StatelessWidget {
+class ShowListUserPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = ScopedModel.of<UserModel>(context, rebuildOnChange: true);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -21,7 +24,7 @@ class ShowListPost extends StatelessWidget {
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('posts')
-            .orderBy('created_at')
+            .where('owner', isEqualTo: user.userId)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) return Text('Error: ${snapshot.error}');
@@ -36,7 +39,7 @@ class ShowListPost extends StatelessWidget {
                   (DocumentSnapshot document) {
                     return DogCard(
                       document: document,
-                      userView: false,
+                      userView: true,
                     );
                   },
                 ).toList(),

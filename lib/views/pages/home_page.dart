@@ -25,6 +25,17 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         elevation: 1.0,
         backgroundColor: Colors.yellowAccent[700],
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => ShowListUserPost(),
+              ),
+            ),
+            icon: Icon(Icons.list),
+          )
+        ],
       ),
       body: Container(
         child: GridView.count(

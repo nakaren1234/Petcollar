@@ -4,9 +4,11 @@ import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 class DogCard extends StatelessWidget {
   final DocumentSnapshot document;
+  final bool userView;
 
   const DogCard({
     this.document,
+    this.userView,
   });
 
   @override
@@ -86,28 +88,30 @@ class DogCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Transform.scale(
-                    scale: 0.6,
-                    child: LiteRollingSwitch(
-                      value: document['found'] ?? false,
-                      textOn: "สูญหาย",
-                      textOff: "พบเจอ",
-                      colorOn: Colors.redAccent,
-                      colorOff: Colors.lightGreenAccent,
-                      iconOn: Icons.notifications,
-                      iconOff: Icons.notifications,
-                      textSize: 22.0,
-                      onChanged: (bool position) async {
-                        FirebaseFirestore.instance
-                            .collection('posts')
-                            .doc(document.id)
-                            .update({
-                          "found": !document['found'],
-                          "updated_at": DateTime.now(),
-                        });
-                      },
-                    ),
-                  ),
+                  userView
+                      ? Transform.scale(
+                          scale: 0.6,
+                          child: LiteRollingSwitch(
+                            value: document['found'] ?? false,
+                            textOn: "สูญหาย",
+                            textOff: "พบเจอ",
+                            colorOn: Colors.redAccent,
+                            colorOff: Colors.lightGreenAccent,
+                            iconOn: Icons.notifications,
+                            iconOff: Icons.notifications,
+                            textSize: 22.0,
+                            onChanged: (bool position) async {
+                              FirebaseFirestore.instance
+                                  .collection('posts')
+                                  .doc(document.id)
+                                  .update({
+                                "found": !document['found'],
+                                "updated_at": DateTime.now(),
+                              });
+                            },
+                          ),
+                        )
+                      : document['found'],
                 ],
               ),
             ),
