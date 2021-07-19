@@ -23,7 +23,7 @@ class ShowListPostUser extends StatelessWidget {
         stream: FirebaseFirestore.instance
             .collection('posts')
             // .where('found', isEqualTo: false)
-            .where('owner', isEqualTo: UserModel().userId)
+            .where('owner', isEqualTo: '633eWJc92XZCTLXXRAKa1GhslgG3')
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) return Text('Error: ${snapshot.error}');
