@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pet/scoped_model/user_model.dart';
 import 'package:pet/widgets/dog_card_user.dart';
 
 class ShowListPostUser extends StatelessWidget {
